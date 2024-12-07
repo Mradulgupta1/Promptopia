@@ -5,7 +5,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from "next/navigation"
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import Form from "@components/Form"
 
 const EditPrompt = () => {
@@ -31,7 +31,7 @@ const EditPrompt = () => {
         }
         if(promptID) getPromptDetails();
     }, [promptID]);
-
+    
     const updatePrompt = async(e) => {
         e.preventDefault();
         setSubmitting(true);
@@ -57,13 +57,15 @@ const EditPrompt = () => {
     }
 
     return (
+       <Suspense>
         <Form
-            type="Edit"
-            post={post}
-            setPost={setPost}
-            submitting={submitting}
-            handleSubmit={updatePrompt}
-        />
+                type="Edit"
+                post={post}
+                setPost={setPost}
+                submitting={submitting}
+                handleSubmit={updatePrompt}
+            />
+        </Suspense>
     )
 }
 

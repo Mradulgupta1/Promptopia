@@ -41,7 +41,7 @@ const MyProfile = () => {
 			setPosts(data);
 		}
 		if(session?.user.id) fetchPost();
-	}, []);
+	}, [session?.user.id]);
 
 	return (
 		<Profile
